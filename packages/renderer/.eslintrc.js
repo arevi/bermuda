@@ -11,6 +11,7 @@ module.exports = {
     'plugin:import/typescript',
   ],
   parserOptions: {
+    tsConfigRootDir: __dirname,
     project: './tsconfig.json',
   },
   ignorePatterns: [

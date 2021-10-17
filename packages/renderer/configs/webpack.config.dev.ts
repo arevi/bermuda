@@ -40,7 +40,7 @@ const config: Configuration = {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
   output: {
-    path: path.join(rootPath, './build'),
+    path: path.join(rootPath, './dist/dev'),
     filename: '[name].[chunkhash].js',
   },
   plugins: [

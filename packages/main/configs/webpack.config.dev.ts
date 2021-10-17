@@ -22,7 +22,7 @@ const config: Configuration = {
     extensions: ['*', '.js', '.ts', '.json'],
   },
   output: {
-    path: path.join(rootPath, './build'),
+    path: path.join(rootPath, './dist/dev'),
     filename: 'app.js',
   },
   plugins: [],

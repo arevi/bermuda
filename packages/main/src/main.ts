@@ -6,10 +6,10 @@ const isDev: boolean = process.env.ELECTRON_ENV === 'dev';
 // Render main window w/ configuration settings
 const renderWindow = async () => {
   mainWindow = new BrowserWindow({
-    width: 200,
-    height: 500,
-    minWidth: 200,
-    minHeight: 500,
+    width: 900,
+    height: 700,
+    minWidth: 900,
+    minHeight: 700,
     center: true,
     webPreferences: {
       nodeIntegration: true,

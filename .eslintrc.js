@@ -1,20 +1,29 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  extends: ['airbnb-typescript', 'airbnb/hooks', 'plugin:prettier/recommended'],
+  plugins: ['@typescript-eslint', 'prettier'],
+  extends: [
+    'airbnb-typescript',
+    'prettier',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+  ],
   parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json'],
-  },
-  rules: {
-    'prettier/prettier': 'error',
-    'no-console': 'warn',
+    project: './tsconfig.json',
   },
   ignorePatterns: [
     '.eslintrc.js',
     'configs',
     'webpack.config.*.ts',
     'tailwind.config.js',
+    'build',
   ],
+  rules: {
+    /* Prevents unformatted code from passing linting */
+    'prettier/prettier': 'error',
+    /* Terrible rule, breaks electron imports */
+    'import/no-extraneous-dependencies': 'off',
+  },
 };

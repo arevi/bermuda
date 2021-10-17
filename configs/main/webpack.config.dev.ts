@@ -1,22 +1,31 @@
-const config = {
-  entry: "./src/main/app.ts",
-  name: "electron",
-  target: "electron-main",
+import path from 'path';
+import { Configuration } from 'webpack';
+
+const rootPath = path.join(__dirname, '../../');
+const appPath = path.join(rootPath, './src/main/main.ts');
+
+const config: Configuration = {
+  entry: '/src/main/main.ts',
+  name: 'app',
+  target: 'electron-main',
+  mode: 'development',
   module: {
     rules: [
       {
         test: /\.ts?$/,
-        use: ["ts-loader"],
         exclude: /node_modules/,
+        use: 'ts-loader',
       },
     ],
   },
   resolve: {
-    extensions: ["*", ".js", ".ts", ".json"],
+    extensions: ['*', '.js', '.ts', '.json'],
   },
   output: {
-    path: __dirname + "/build",
-    filename: "app.js",
+    path: path.join(rootPath, './build'),
+    filename: 'app.js',
   },
   plugins: [],
 };
+
+export default config;

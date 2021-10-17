@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow } from 'electron';
 
 let mainWindow: BrowserWindow | null;
 const isDev: boolean = process.env.ELECTRON_ENV === 'dev';
@@ -6,15 +6,16 @@ const isDev: boolean = process.env.ELECTRON_ENV === 'dev';
 // Render main window w/ configuration settings
 const renderWindow = async () => {
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: 200,
     height: 500,
-    minWidth: 800,
+    minWidth: 200,
     minHeight: 500,
     center: true,
     webPreferences: {
       nodeIntegration: true,
       devTools: isDev,
     },
+    title: 'test',
   });
 
   // Depending on the environment the frontend will either load from the react server or the static html file
@@ -35,9 +36,6 @@ const renderWindow = async () => {
     mainWindow = null;
   });
 };
-
-// Renders main window
-app.on('ready', renderWindow);
 
 // Closes app once all windows closed
 app.on('window-all-closed', () => {

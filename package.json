@@ -1,0 +1,25 @@
+{
+  "name": "ilocation-spoofer",
+  "version": "0.0.1",
+  "description": "iOS Location Spoofer allows the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd ./packages/main && npm run build-main-dev\" \"cd ./packages/renderer && npm run start-renderer-dev\" \"wait-on ./dist/dev/app.js && wait-on tcp:3000 && cd ./packages/main && npm run start-main-dev\"",
+    "postinstall": "lerna bootstrap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arevi/iLocation-Spoofer.git"
+  },
+  "author": "Armin Dizdarevic",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/arevi/iLocation-Spoofer/issues"
+  },
+  "homepage": "https://github.com/arevi/iLocation-Spoofer#readme",
+  "devDependencies": {
+    "concurrently": "^6.3.0",
+    "lerna": "^4.0.0",
+    "wait-on": "^6.0.0"
+  }
+}

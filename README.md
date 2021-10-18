@@ -1,2 +1,3 @@
 # iLocation-Spoofer
-Manipulate GPS coordinates on iOS devices on demand to prevent tracking and improve personal privacy.
+
+iOS Location Spoofer allow the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.

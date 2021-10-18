@@ -1,11 +1,8 @@
 import path from 'path';
 import { Configuration } from 'webpack';
 
-const rootPath = path.join(__dirname, '../../');
-const appPath = path.join(rootPath, './src/main/main.ts');
-
 const config: Configuration = {
-  entry: '/src/main/main.ts',
+  entry: path.join(__dirname, '../src/main.ts'),
   name: 'app',
   target: 'electron-main',
   mode: 'development',
@@ -22,7 +19,7 @@ const config: Configuration = {
     extensions: ['*', '.js', '.ts', '.json'],
   },
   output: {
-    path: path.join(rootPath, './dist/dev'),
+    path: path.join(__dirname, '../../../dist/dev'),
     filename: 'app.js',
   },
   plugins: [],

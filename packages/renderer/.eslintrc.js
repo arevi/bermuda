@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -11,15 +13,13 @@ module.exports = {
     'plugin:import/typescript',
   ],
   parserOptions: {
-    tsConfigRootDir: __dirname,
-    project: './tsconfig.json',
+    project: path.join(__dirname, './tsconfig.json'),
   },
   ignorePatterns: [
     '.eslintrc.js',
     'configs',
     'webpack.config.*.ts',
     'tailwind.config.js',
-    'build',
   ],
   rules: {
     /* Prevents unformatted code from passing linting */

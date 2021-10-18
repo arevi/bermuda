@@ -4,7 +4,7 @@ let mainWindow: BrowserWindow | null;
 const isDev: boolean = process.env.ELECTRON_ENV === 'dev';
 
 // Render main window w/ configuration settings
-const renderWindow = async () => {
+const renderWindow = () => {
   mainWindow = new BrowserWindow({
     width: 900,
     height: 700,
@@ -15,7 +15,6 @@ const renderWindow = async () => {
       nodeIntegration: true,
       devTools: isDev,
     },
-    title: 'test',
   });
 
   // Depending on the environment the frontend will either load from the react server or the static html file

@@ -1,12 +1,9 @@
+import path from 'path';
 import HtmlWebPackPlugin from 'html-webpack-plugin';
 import { Configuration } from 'webpack';
-import path from 'path';
-
-const rootPath = path.join(__dirname, '../../');
-const rendererPath = path.join(rootPath, './src/renderer/index.tsx');
 
 const config: Configuration = {
-  entry: rendererPath,
+  entry: path.join(__dirname, '../src/index.tsx'),
   name: 'react',
   target: ['web', 'electron-renderer'],
   mode: 'development',
@@ -40,12 +37,12 @@ const config: Configuration = {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
   output: {
-    path: path.join(rootPath, './dist/dev'),
+    path: path.join(__dirname, '../../../dist/dev'),
     filename: '[name].[chunkhash].js',
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './src/renderer/public/index.html',
+      template: path.join(__dirname, '../src/public/index.html'),
       hash: true,
       filename: 'index.html',
     }),

@@ -2,12 +2,9 @@
   "name": "ilocation-spoofer-renderer",
   "version": "0.0.1",
   "description": "iOS Location Spoofer allows the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.",
-  "main": "index.js",
+  "main": "./src/index.tsx",
   "scripts": {
-    "start": "concurrently \"npm run build-main-dev\" \"npm run start-renderer-dev\" \"wait-on ./dist/dev/app.js && wait-on tcp:3000 && npm run start-main-dev\"",
-    "build-main-dev": "webpack --watch --config ./configs/main/webpack.config.dev.ts",
-    "start-main-dev": "cd ./dist/dev && cross-env ELECTRON_ENV=dev electron app.js",
-    "start-renderer-dev": "webpack-dev-server --port 3000 --config ./configs/renderer/webpack.config.dev.ts"
+    "start-renderer-dev": "webpack-dev-server --port 3000 --config ./configs/webpack.config.dev.ts"
   },
   "repository": {
     "type": "git",
@@ -24,6 +21,7 @@
     "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
+    "@types/node": "^16.11.1",
     "@types/react": "^17.0.30",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.33.0",

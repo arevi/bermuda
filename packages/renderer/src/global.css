@@ -1,3 +1,10 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import 'leaflet/dist/leaflet.css';
+
+body,
+#app-root {
+  height: 100vh;
+  width: 100vw;
+}

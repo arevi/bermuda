@@ -1,11 +1,13 @@
 import React from 'react';
 
+import Map from './Map/Map';
+
 import './App.css';
 
 const App = () => {
   return (
-    <div>
-      <p>Test</p>
+    <div id='app-container'>
+      <Map />
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import path from 'path';
 import HtmlWebPackPlugin from 'html-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 import { Configuration } from 'webpack';
+import {} from 'webpack-dev-server';
 
 const config: Configuration = {
   entry: path.join(__dirname, '../src/index.tsx'),
@@ -37,13 +39,12 @@ const config: Configuration = {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
   output: {
-    path: path.join(__dirname, '../../../dist/dev'),
+    path: path.join(__dirname, '../../../dist/dev/app/js'),
     filename: '[name].[chunkhash].js',
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: path.join(__dirname, '../src/public/index.html'),
-      hash: true,
+      template: path.join(__dirname, '../public/index.html'),
       filename: 'index.html',
     }),
   ],

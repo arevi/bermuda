@@ -4,4 +4,4 @@ import App from './App/App';
 
 import './global.css';
 
-render(<App />, document.getElementById('root'));
+render(<App />, document.getElementById('app-root'));

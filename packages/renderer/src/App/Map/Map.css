@@ -1,5 +1,5 @@
 @layer components {
-  #app-container {
+  #map-container {
     @apply h-full w-full;
   }
 }

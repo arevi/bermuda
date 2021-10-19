@@ -1,0 +1,22 @@
+@layer components {
+  #app-titlebar {
+    @apply h-7 w-full flex;
+    background-color: #121212;
+  }
+
+  #app-titlebar > #app-titlebar-drag-region {
+    @apply h-full w-full flex items-center justify-center pl-14;
+    color: #4e4e4e;
+    -webkit-app-region: drag;
+  }
+
+  #app-titlebar > #app-titlebar-controls {
+    @apply h-full w-14 flex items-center justify-evenly;
+    color: #4e4e4e;
+  }
+
+  #app-titlebar > #app-titlebar-controls > .app-titlebar-controls-icon:hover {
+    @apply cursor-pointer;
+    color: #3e3e3e;
+  }
+}

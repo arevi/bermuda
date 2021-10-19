@@ -1,5 +1,9 @@
 @layer components {
   #app-container {
+    @apply h-full w-full flex flex-col;
+  }
+
+  #app-content {
     @apply h-full w-full;
   }
 }

@@ -1,0 +1,18 @@
+@layer components {
+  #device-panel {
+    @apply absolute bottom-4 left-10 w-72 rounded-sm shadow-md border overflow-y-auto p-2;
+    /* Leaflet uses a z-index of 400 for it's panes, so we must go 1 level higher to display over it */
+    z-index: 401;
+    background-color: #121212;
+    border-color: #242424;
+    height: 4.5rem;
+  }
+
+  #device-panel::-webkit-scrollbar {
+    display: none;
+  }
+
+  #device-panel > #device-panel-header > #device-panel-header-title {
+    color: #6e6e6e;
+  }
+}

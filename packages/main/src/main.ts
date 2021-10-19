@@ -7,14 +7,16 @@ const isDev: boolean = process.env.ELECTRON_ENV === 'dev';
 const renderWindow = () => {
   mainWindow = new BrowserWindow({
     width: 900,
-    height: 700,
+    height: 600,
     minWidth: 900,
-    minHeight: 700,
+    minHeight: 600,
     center: true,
     webPreferences: {
       nodeIntegration: true,
       devTools: isDev,
     },
+    frame: false,
+    maximizable: false,
   });
 
   // Depending on the environment the frontend will either load from the react server or the static html file

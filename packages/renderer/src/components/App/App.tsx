@@ -1,5 +1,5 @@
 import React from 'react';
-import DevicePanel from './DevicePanel/DevicePanel';
+import DeviceSelector from './DeviceSelector/DeviceSelector';
 import Map from './Map/Map';
 
 import './App.css';
@@ -10,7 +10,7 @@ const App = () => {
     <div id='app-container'>
       <Titlebar />
       <div id='app-content'>
-        <DevicePanel />
+        <DeviceSelector />
         <Map />
       </div>
     </div>

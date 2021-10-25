@@ -1,7 +1,9 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
+import DeviceMessageHandler from './utils/deviceMessageHandler';
 
 let mainWindow: BrowserWindow | null;
 const isDev: boolean = process.env.ELECTRON_ENV === 'dev';
+const deviceMessageHandler = new DeviceMessageHandler();
 
 // Render main window w/ configuration settings
 const renderWindow = () => {
@@ -12,8 +14,10 @@ const renderWindow = () => {
     minHeight: 600,
     center: true,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
+      contextIsolation: true,
       devTools: isDev,
+      preload: __dirname + '/preload.js',
     },
     frame: false,
     maximizable: false,
@@ -53,3 +57,5 @@ app.whenReady().then(() => {
     if (mainWindow === null) renderWindow();
   });
 });
+
+ipcMain.on('device', deviceMessageHandler.handleMessage);

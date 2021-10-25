@@ -4,8 +4,8 @@
   "description": "iOS Location Spoofer allows the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.",
   "main": "./src/main.ts",
   "scripts": {
-    "build-main-dev": "webpack --watch --config ./configs/webpack.config.dev.ts",
-    "start-main-dev": "cd ../../dist/dev && cross-env ELECTRON_ENV=dev electron app.js"
+    "build-main-dev": "SET NODE_OPTIONS=--openssl-legacy-provider && webpack --watch --config ./configs/webpack.config.dev.ts",
+    "start-main-dev": "cd ../../dist/dev && cross-env ELECTRON_ENV=dev electron main.js"
   },
   "repository": {
     "type": "git",
@@ -20,11 +20,13 @@
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.15.8",
     "@babel/preset-typescript": "^7.15.0",
+    "@types/copy-webpack-plugin": "^8.0.1",
     "@types/node": "^16.11.4",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "babel-loader": "^8.2.3",
     "concurrently": "^6.3.0",
+    "copy-webpack-plugin": "^9.0.1",
     "cross-env": "^7.0.3",
     "electron": "^15.3.0",
     "electron-builder": "^22.13.1",

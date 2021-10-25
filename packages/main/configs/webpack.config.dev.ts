@@ -1,9 +1,13 @@
 import path from 'path';
 import { Configuration } from 'webpack';
+import CopyPlugin from 'copy-webpack-plugin';
 
 const config: Configuration = {
-  entry: path.join(__dirname, '../src/main.ts'),
-  name: 'app',
+  entry: {
+    main: path.join(__dirname, '../src/main.ts'),
+    preload: path.join(__dirname, '../preload/preload.ts'),
+  },
+  name: 'main',
   target: 'electron-main',
   mode: 'development',
   module: {
@@ -20,7 +24,7 @@ const config: Configuration = {
   },
   output: {
     path: path.join(__dirname, '../../../dist/dev'),
-    filename: 'app.js',
+    filename: '[name].js',
   },
   plugins: [],
 };

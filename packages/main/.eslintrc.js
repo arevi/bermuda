@@ -13,7 +13,7 @@ module.exports = {
   parserOptions: {
     project: path.join(__dirname, './tsconfig.json'),
   },
-  ignorePatterns: ['.eslintrc.js', 'configs', 'webpack.config.*.ts'],
+  ignorePatterns: ['.eslintrc.js', 'configs', 'webpack.config.*.ts', 'preload'],
   rules: {
     /* Prevents unformatted code from passing linting */
     'prettier/prettier': 'error',

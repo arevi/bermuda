@@ -1,7 +1,10 @@
+import { DeviceMessage, DeviceMessageType } from '../interfaces/Message';
+
 class DeviceMessageHandler {
   getDevices = () => {
-    window.api.send('device', 'test');
-    return [];
+    const message: DeviceMessage = { type: DeviceMessageType.GetDevices };
+
+    window.api.send('device', message);
   };
 }
 

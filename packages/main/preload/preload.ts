@@ -8,10 +8,10 @@ contextBridge.exposeInMainWorld('api', {
       ipcRenderer.send(channel, data);
     }
   },
-  receive: (channel: string, func: any) => {
+  on: (channel: string, callback: any) => {
     if (validChannels.includes(channel)) {
-      console.log(func);
-      ipcRenderer.on(channel, (event, ...args) => func(...args));
+      const newCallback = (_: any, data: any) => callback(data);
+      ipcRenderer.on(channel, newCallback);
     }
   },
 });

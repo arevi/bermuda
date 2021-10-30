@@ -1,17 +1,17 @@
+import { BrowserWindow } from 'electron';
 import { DeviceMessage, DeviceMessageType } from '../interfaces/Device';
-import { ipcRenderer } from 'electron';
 
 class DeviceMessageHandler {
-  handleMessage = (e: Electron.IpcMainEvent, message: DeviceMessage) => {
+  handleMessage = (message: DeviceMessage, window: BrowserWindow) => {
     switch (message.type) {
       case DeviceMessageType.GetDevices:
-        this.getConnectedDevices();
+        this.getConnectedDevices(window);
         break;
     }
   };
 
-  getConnectedDevices = () => {
-    ipcRenderer.send('device', []);
+  getConnectedDevices = (window: BrowserWindow) => {
+    window.webContents.send('device', { devices: [] });
   };
 }
 

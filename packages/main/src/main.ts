@@ -1,4 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
+import { DeviceMessage } from './interfaces/Device';
 import DeviceMessageHandler from './utils/deviceMessageHandler';
 
 let mainWindow: BrowserWindow | null;
@@ -14,7 +15,6 @@ const renderWindow = () => {
     minHeight: 600,
     center: true,
     webPreferences: {
-      nodeIntegration: false,
       contextIsolation: true,
       devTools: isDev,
       preload: __dirname + '/preload.js',
@@ -58,4 +58,12 @@ app.whenReady().then(() => {
   });
 });
 
-ipcMain.on('device', deviceMessageHandler.handleMessage);
+/**
+ * Handles all device messages that are sent from the renderer
+ * Validates the window is currently "alive"
+ * All message payloads & the target window are passed to the device message handler
+ */
+ipcMain.on('device', (_, message: DeviceMessage) => {
+  if (mainWindow === null) return;
+  deviceMessageHandler.handleMessage(message, mainWindow);
+});

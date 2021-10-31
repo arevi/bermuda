@@ -1,7 +1,7 @@
 import { BrowserWindow } from 'electron';
-import { DeviceMessage, DeviceMessageType } from '../interfaces/Device';
+import { DeviceMessage, DeviceMessageType } from '../interfaces/DeviceMessage';
 
-class DeviceMessageHandler {
+export class DeviceMessageHandler {
   handleMessage = (message: DeviceMessage, window: BrowserWindow) => {
     switch (message.type) {
       case DeviceMessageType.GetDevices:
@@ -14,5 +14,3 @@ class DeviceMessageHandler {
     window.webContents.send('device', { devices: [] });
   };
 }
-
-export default DeviceMessageHandler;

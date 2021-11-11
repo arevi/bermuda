@@ -1,13 +1,10 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { DeviceMessage } from './interfaces/DeviceMessage';
-import { DeviceManager } from './utils/DeviceManager';
-import { DeviceMessageHandler } from './utils/deviceMessageHandler';
+import { Configuration } from './classes/Configuration';
 import { createAppWindow } from './views/app';
 
+let configuration: Configuration;
 let appWindow: BrowserWindow;
-
-const deviceMessageHandler = new DeviceMessageHandler();
-const deviceManager = new DeviceManager();
 
 // Closes app once all windows closed
 app.on('window-all-closed', () => {
@@ -22,6 +19,12 @@ app.whenReady().then(() => {
   app.on('activate', () => {
     appWindow = createAppWindow();
   });
+
+  // Setup configuration by passing a function to retrieve app window
+  configuration = new Configuration(() => appWindow);
+
+  // Start listening for devices
+  configuration.deviceManager.start();
 });
 
 /**
@@ -30,7 +33,5 @@ app.whenReady().then(() => {
  * All message payloads & the target window are passed to the device message handler
  */
 ipcMain.on('device', (_, message: DeviceMessage) => {
-  deviceMessageHandler.handleMessage(message, appWindow);
+  configuration.deviceMessageHandler.handleMessage(message);
 });
-
-deviceManager.start();

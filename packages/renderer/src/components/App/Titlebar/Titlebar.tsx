@@ -8,6 +8,7 @@ import {
 import './Titlebar.css';
 
 const Titlebar = () => {
+  window.api.on('device', (data) => console.log(data));
   return (
     <div id='app-titlebar'>
       <div id='app-titlebar-drag-region'>

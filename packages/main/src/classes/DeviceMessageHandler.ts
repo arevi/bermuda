@@ -24,6 +24,6 @@ export class DeviceMessageHandler {
   };
 
   sendConnectedDevices = (devices: Device[]) => {
-    this.getAppWindow().webContents.send('device', { devices });
+    this.getAppWindow().webContents.send('device', devices);
   };
 }

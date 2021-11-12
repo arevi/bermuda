@@ -3,7 +3,6 @@ import {
   getConnectedDeviceIds,
   getConnectedDeviceInfo,
 } from '../utils/deviceScanning';
-import { isDev } from '../utils/isDev';
 import { DeviceMessageHandler } from './DeviceMessageHandler';
 
 export class DeviceManager {

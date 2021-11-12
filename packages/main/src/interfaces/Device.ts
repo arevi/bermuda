@@ -13,7 +13,6 @@ export interface DeviceDetails {
 }
 
 export interface DeviceStatus {
-  connected: boolean;
   developer: boolean;
 }
 

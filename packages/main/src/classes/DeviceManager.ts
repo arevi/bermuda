@@ -1,4 +1,6 @@
 import { Device } from '../interfaces/Device';
+import { getConnectedDeviceIds } from '../utils/deviceScanning';
+import { isDev } from '../utils/isDev';
 import { DeviceMessageHandler } from './DeviceMessageHandler';
 
 export class DeviceManager {
@@ -15,7 +17,16 @@ export class DeviceManager {
     setInterval(this.scanDevices, 5000);
   };
 
-  scanDevices = () => {
-    this.getDeviceMessageHandler().sendConnectedDevices([]);
+  scanDevices = async () => {
+    let executablePath = '';
+    if (isDev) {
+      if (process.platform != 'darwin') {
+        executablePath = './assets/win-x64/idevice_id.exe';
+      } else {
+      }
+    }
+
+    const deviceIds = await getConnectedDeviceIds(executablePath);
+    console.log(deviceIds);
   };
 }

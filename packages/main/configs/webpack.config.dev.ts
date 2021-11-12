@@ -26,7 +26,11 @@ const config: Configuration = {
     path: path.join(__dirname, '../../../dist/dev'),
     filename: '[name].js',
   },
-  plugins: [],
+  plugins: [
+    new CopyPlugin({
+      patterns: [{ from: '../main/assets', to: 'assets' }],
+    }),
+  ],
 };
 
 export default config;

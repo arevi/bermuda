@@ -1,0 +1,36 @@
+@layer components {
+  #location-entry-container {
+    @apply w-60 h-12 rounded-sm shadow-md border py-1.5 px-4 opacity-80 mt-4 flex-shrink-0;
+    background-color: #121212;
+    border-color: #242424;
+  }
+
+  #location-entry-container:hover {
+    @apply opacity-100;
+  }
+
+  #location-entry-form {
+    @apply h-full w-full flex items-center justify-between;
+  }
+
+  #location-entry-coordinate-input {
+    @apply border rounded-sm text-center text-sm;
+    color: #4e4e4e;
+    background-color: #121212;
+    border-color: #242424;
+  }
+
+  #location-entry-coordinate-input:focus {
+    @apply outline-none;
+    border-color: #3e3e3e;
+  }
+
+  #location-entry-coordinate-set-btn {
+    color: #4e4e4e;
+  }
+
+  #location-entry-coordinate-set-btn:hover {
+    @apply cursor-pointer;
+    color: #3e3e3e;
+  }
+}

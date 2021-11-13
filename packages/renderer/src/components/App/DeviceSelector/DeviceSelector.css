@@ -1,18 +1,39 @@
 @layer components {
   #device-panel {
-    @apply absolute bottom-4 left-10 w-80 rounded-sm shadow-md border overflow-y-auto p-2;
+    @apply w-60 rounded-sm shadow-md border p-1.5 opacity-80;
     /* Leaflet uses a z-index of 400 for it's panes, so we must go 1 level higher to display over it */
-    z-index: 401;
     background-color: #121212;
     border-color: #242424;
-    height: 4.5rem;
   }
 
-  #device-panel::-webkit-scrollbar {
-    display: none;
+  #device-panel:hover {
+    @apply opacity-100;
   }
 
-  #device-panel > #device-panel-header > #device-panel-header-title {
-    color: #6e6e6e;
+  #device-panel.closed {
+    @apply h-20;
+  }
+
+  #device-panel.open {
+    @apply h-full;
+  }
+
+  #device-panel-header {
+    @apply w-full h-4 flex items-center justify-center border-b;
+    border-color: #242424;
+  }
+
+  #device-panel-toggle-btn {
+    @apply text-sm pb-1;
+    color: #3e3e3e;
+  }
+
+  #device-msg-container {
+    @apply h-full w-full flex justify-center items-center pb-3;
+  }
+
+  #devices-msg {
+    @apply text-sm;
+    color: #4e4e4e;
   }
 }

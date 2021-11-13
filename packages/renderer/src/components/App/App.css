@@ -6,4 +6,10 @@
   #app-content {
     @apply h-full w-full;
   }
+
+  #app-controls-overlay {
+    @apply absolute bottom-4 flex flex-col justify-end ml-4;
+    height: calc(100vh - 3.75rem);
+    z-index: 401;
+  }
 }

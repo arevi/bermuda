@@ -99,6 +99,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "preload/preload.ts"],
+  "include": ["./src/**/*.ts", "preload/preload.ts"],
   "exclude": ["./node_modules"]
 }

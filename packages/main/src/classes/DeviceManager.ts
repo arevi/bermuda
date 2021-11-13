@@ -31,7 +31,7 @@ export class DeviceManager {
     );
 
     // Map over known connected device UDIDs
-    let knownDeviceIds = this.devices.map((knownDevice) => knownDevice.udid);
+    const knownDeviceIds = this.devices.map((knownDevice) => knownDevice.udid);
 
     // Filter out any known device IDs to prevent grabbing information from the same device twice
     const unknownDevices = latestDeviceIds.filter(

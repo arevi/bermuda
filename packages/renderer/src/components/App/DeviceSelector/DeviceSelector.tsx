@@ -9,8 +9,6 @@ const DeviceSelector = () => {
   const [selectedDevice, setSelectedDevice] = useState<Device>();
   const devices = useDevices();
 
-  console.log(devices);
-
   return (
     <Listbox value={selectedDevice} onChange={setSelectedDevice}>
       <div className='relative mt-1' id='device-panel'>

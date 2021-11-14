@@ -1,6 +1,6 @@
 @layer components {
   #location-entry-container {
-    @apply w-60 h-12 rounded-sm shadow-md border py-1.5 px-4 opacity-80 mt-4 flex-shrink-0;
+    @apply w-60 h-12 rounded-sm shadow-md border py-1.5 px-4 opacity-80 mt-4 flex-shrink-0 transition-all duration-500;
     background-color: #121212;
     border-color: #242424;
   }

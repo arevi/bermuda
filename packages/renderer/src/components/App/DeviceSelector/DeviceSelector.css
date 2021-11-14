@@ -1,6 +1,6 @@
 @layer components {
   #device-panel {
-    @apply w-60 rounded-sm shadow-md border p-1.5 opacity-80;
+    @apply w-60 rounded-sm shadow-md border p-1.5 opacity-80 transition-all duration-500;
     /* Leaflet uses a z-index of 400 for it's panes, so we must go 1 level higher to display over it */
     background-color: #121212;
     border-color: #242424;

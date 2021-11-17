@@ -1,11 +1,15 @@
+import React from 'react';
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import './LocationEntry.css';
 
-const LocationEntry = () => {
+interface LocationEntryProps {
+  disabled: boolean;
+}
+
+const LocationEntry = ({ disabled }: LocationEntryProps) => {
   const {
     register,
     handleSubmit,
@@ -24,8 +28,13 @@ const LocationEntry = () => {
           type='text'
           id='location-entry-coordinate-input'
           {...register('coordinates')}
+          disabled={disabled}
         />
-        <button type='submit' id='location-entry-coordinate-set-btn'>
+        <button
+          type='submit'
+          id='location-entry-coordinate-set-btn'
+          disabled={disabled}
+        >
           <FontAwesomeIcon icon={faPlayCircle} />
         </button>
       </form>

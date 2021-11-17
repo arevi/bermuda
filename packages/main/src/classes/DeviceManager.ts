@@ -20,36 +20,42 @@ export class DeviceManager {
   };
 
   scanDevices = async () => {
-    // Scan all connected devices and retrieve device UDIDs
-    const latestDeviceIds = await getConnectedDeviceIds(
-      './assets/win-x64/idevice_id.exe'
-    );
-
-    // Remove any devices which have been disconnected
-    this.devices = this.devices.filter((device) =>
-      latestDeviceIds.includes(device.udid)
-    );
-
-    // Map over known connected device UDIDs
-    const knownDeviceIds = this.devices.map((knownDevice) => knownDevice.udid);
-
-    // Filter out any known device IDs to prevent grabbing information from the same device twice
-    const unknownDevices = latestDeviceIds.filter(
-      (deviceId) => !knownDeviceIds.includes(deviceId)
-    );
-
-    // If there are unknown devices, retrieve their information and add them to the devices array
-    if (unknownDevices.length !== 0) {
-      await Promise.all(
-        unknownDevices.map(async (unknownDeviceId) => {
-          let device: Device = await getConnectedDeviceInfo(
-            './assets/win-x64/ideviceinfo.exe',
-            unknownDeviceId
-          );
-
-          this.devices = [...this.devices, device];
-        })
+    try {
+      // Scan all connected devices and retrieve device UDIDs
+      const latestDeviceIds = await getConnectedDeviceIds(
+        './assets/win-x64/idevice_id.exe'
       );
+
+      // Remove any devices which have been disconnected
+      this.devices = this.devices.filter((device) =>
+        latestDeviceIds.includes(device.udid)
+      );
+
+      // Map over known connected device UDIDs
+      const knownDeviceIds = this.devices.map(
+        (knownDevice) => knownDevice.udid
+      );
+
+      // Filter out any known device IDs to prevent grabbing information from the same device twice
+      const unknownDevices = latestDeviceIds.filter(
+        (deviceId) => !knownDeviceIds.includes(deviceId)
+      );
+
+      // If there are unknown devices, retrieve their information and add them to the devices array
+      if (unknownDevices.length !== 0) {
+        await Promise.all(
+          unknownDevices.map(async (unknownDeviceId) => {
+            let device: Device = await getConnectedDeviceInfo(
+              './assets/win-x64/ideviceinfo.exe',
+              unknownDeviceId
+            );
+
+            this.devices = [...this.devices, device];
+          })
+        );
+      }
+    } catch (err) {
+      this.devices = [];
     }
 
     this.getDeviceMessageHandler().sendConnectedDevices(this.devices);

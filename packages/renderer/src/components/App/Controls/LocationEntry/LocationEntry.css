@@ -29,8 +29,12 @@
     color: #4e4e4e;
   }
 
-  #location-entry-coordinate-set-btn:hover {
+  #location-entry-coordinate-set-btn:hover:not(:disabled) {
     @apply cursor-pointer;
     color: #3e3e3e;
+  }
+
+  #location-entry-coordinate-set-btn:disabled {
+    @apply cursor-not-allowed;
   }
 }

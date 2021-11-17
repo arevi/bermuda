@@ -1,6 +1,6 @@
 @layer components {
   #device-panel {
-    @apply w-60 rounded-sm shadow-md border p-1.5 opacity-80 transition-all duration-500;
+    @apply w-60 rounded-sm shadow-md border opacity-80 transition-all duration-500;
     /* Leaflet uses a z-index of 400 for it's panes, so we must go 1 level higher to display over it */
     background-color: #121212;
     border-color: #242424;
@@ -19,7 +19,7 @@
   }
 
   #device-panel-header {
-    @apply w-full h-4 flex items-center justify-center border-b;
+    @apply w-full h-6 pt-0.5 flex items-center justify-center border-b;
     border-color: #242424;
   }
 
@@ -29,11 +29,11 @@
   }
 
   #device-msg-container {
-    @apply h-full w-full flex justify-center items-center pb-3;
+    @apply h-full w-full flex justify-center items-center pb-6;
   }
 
   #devices-msg {
-    @apply text-sm;
+    @apply text-sm font-semibold;
     color: #4e4e4e;
   }
 }

@@ -6,7 +6,10 @@ import {
   productTypeRegex,
   productVersionRegex,
 } from './deviceInfoRegex';
-import { convertProductStringToEnum } from './helper';
+import {
+  convertDeviceClassToEnum,
+  convertProductTypeToFriendlyName,
+} from './helper';
 
 export const getConnectedDeviceIds = async (
   executablePath: string
@@ -59,8 +62,10 @@ export const getConnectedDeviceInfo = async (
         return reject();
       }
 
+      const category = convertDeviceClassToEnum(deviceClassMatch[0]);
+
       const newDevice: Device = {
-        category: convertProductStringToEnum(deviceClassMatch[0]),
+        category,
         udid: deviceUDID,
         status: {
           developer: false,
@@ -72,7 +77,10 @@ export const getConnectedDeviceInfo = async (
         details: {
           name: deviceNameMatch[0],
           version: productVersionMatch[0],
-          model: productTypeMatch[0],
+          model: convertProductTypeToFriendlyName(
+            productTypeMatch[0],
+            category
+          ),
         },
       };
 

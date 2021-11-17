@@ -16,8 +16,12 @@ const DeviceSelectorItem = ({
   selectedDevice,
   setSelectedDevice,
 }: DeviceSelectorItemProps) => {
+  /**
+   * Verify the item is in a selectable state and is not the current selected device, then update the selected device
+   * @param udid - Device UDID
+   */
   const handleDeviceClick = (udid: string) => {
-    if (setSelectedDevice) {
+    if (setSelectedDevice && device.udid !== selectedDevice) {
       setSelectedDevice(udid);
     }
   };

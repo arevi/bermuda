@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import DeviceSelector from './DeviceSelector/DeviceSelector';
 import LocationEntry from './LocationEntry/LocationEntry';
+import { LatLngLiteral } from 'leaflet';
 
 import './Controls.css';
 
-const Controls = () => {
+interface ControlsProps {
+  setLocation: (arg: LatLngLiteral) => void;
+  location: LatLngLiteral;
+}
+
+const Controls = ({ location, setLocation }: ControlsProps) => {
   const [selectedDevice, setSelectedDevice] = useState<string>('');
 
   return (
@@ -13,7 +19,11 @@ const Controls = () => {
         selectedDevice={selectedDevice}
         setSelectedDevice={setSelectedDevice}
       />
-      <LocationEntry disabled={selectedDevice === ''} />
+      <LocationEntry
+        location={location}
+        setLocation={setLocation}
+        disabled={selectedDevice === ''}
+      />
     </div>
   );
 };

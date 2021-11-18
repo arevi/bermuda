@@ -39,9 +39,15 @@ const LocationEntry = ({
         <input
           type='text'
           id='location-entry-coordinate-input'
+          className={errors.coordinates ? 'coordinate-input-invalid' : ''}
           {...register('coordinates', {
             required: true,
             disabled,
+            pattern: {
+              value:
+                /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/,
+              message: 'Invalid GPS Coordinates',
+            },
           })}
         />
         <button

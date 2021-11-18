@@ -25,6 +25,10 @@
     border-color: #3e3e3e;
   }
 
+  #location-entry-coordinate-input.coordinate-input-invalid {
+    @apply border-red-500;
+  }
+
   #location-entry-coordinate-set-btn {
     color: #4e4e4e;
   }

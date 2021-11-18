@@ -11,8 +11,8 @@ import { Device } from '../../../../interfaces/Device';
 import './DeviceSelector.css';
 
 interface DeviceSelectorProps {
-  selectedDevice: string;
-  setSelectedDevice: (udid: string) => void;
+  selectedDevice: Device | null;
+  setSelectedDevice: (device: Device | null) => void;
 }
 
 const DeviceSelector = ({
@@ -28,13 +28,13 @@ const DeviceSelector = ({
     const deviceIds = devices.map((device) => device.udid);
 
     // Check if the selected device is no longer a valid device, and reset selected device
-    if (selectedDevice && !deviceIds.includes(selectedDevice)) {
-      setSelectedDevice('');
+    if (selectedDevice && !deviceIds.includes(selectedDevice.udid)) {
+      setSelectedDevice(null);
     }
 
     // Default the selected device to the first device if only 1 device is connected
     if (!selectedDevice && devices.length === 1) {
-      setSelectedDevice(devices[0].udid);
+      setSelectedDevice(devices[0]);
     }
   }, [devices, selectedDevice, setSelectedDevice]);
 
@@ -48,12 +48,12 @@ const DeviceSelector = ({
   const renderDevices = (
     curDevices: Device[],
     panelOpen: boolean,
-    curSelectedDevice: string
+    curSelectedDevice: Device
   ) => {
     let renderedDevices: JSX.Element[] = [];
 
     // If the panel is open build JSX[] of DeviceSelectorItems and return
-    if (panelOpen) {
+    if (panelOpen && selectedDevice) {
       renderedDevices = curDevices.map((device) => (
         <DeviceSelectorItem
           device={device}
@@ -68,17 +68,16 @@ const DeviceSelector = ({
 
     // Panel not open, filter for only selected device
     let deviceSearch = curDevices.filter(
-      (device) => device.udid === curSelectedDevice
+      (device) => device.udid === curSelectedDevice.udid
     );
 
     // If for some odd reason, the device disappears, return nothing
-    if (deviceSearch.length === 0) {
+    if (deviceSearch.length === 0 || !selectedDevice) {
       renderedDevices = [];
 
       return renderedDevices;
     }
 
-    // Return the selected device only if the panel is closed
     return (
       <DeviceSelectorItem device={deviceSearch[0]} key={deviceSearch[0].udid} />
     );
@@ -100,7 +99,9 @@ const DeviceSelector = ({
           <span id='devices-msg'>No devices detected</span>
         </div>
       )}
-      {devices.length !== 0 && renderDevices(devices, open, selectedDevice)}
+      {devices.length !== 0 &&
+        selectedDevice &&
+        renderDevices(devices, open, selectedDevice)}
     </div>
   );
 };

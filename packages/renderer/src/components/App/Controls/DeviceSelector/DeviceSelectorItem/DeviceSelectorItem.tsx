@@ -1,4 +1,4 @@
-import { faMobile } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisH, faMobile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Device } from '../../../../../interfaces/Device';
@@ -7,8 +7,8 @@ import './DeviceSelectorItem.css';
 
 interface DeviceSelectorItemProps {
   device: Device;
-  selectedDevice?: string;
-  setSelectedDevice?: (udid: string) => void;
+  selectedDevice?: Device;
+  setSelectedDevice?: (device: Device) => void;
 }
 
 const DeviceSelectorItem = ({
@@ -20,18 +20,18 @@ const DeviceSelectorItem = ({
    * Verify the item is in a selectable state and is not the current selected device, then update the selected device
    * @param udid - Device UDID
    */
-  const handleDeviceClick = (udid: string) => {
-    if (setSelectedDevice && device.udid !== selectedDevice) {
-      setSelectedDevice(udid);
+  const handleDeviceClick = (targetDevice: Device) => {
+    if (setSelectedDevice && device.udid !== selectedDevice?.udid) {
+      setSelectedDevice(targetDevice);
     }
   };
 
   return (
     <div
       className={`device-selector-item ${
-        selectedDevice === device.udid ? 'selected-device' : ''
+        selectedDevice?.udid === device.udid ? 'selected-device' : ''
       }`}
-      onClick={() => handleDeviceClick(device.udid)}
+      onClick={() => handleDeviceClick(device)}
     >
       <div className='device-selector-item-icon-container'>
         <FontAwesomeIcon
@@ -50,6 +50,16 @@ const DeviceSelectorItem = ({
           </span>
         </div>
       </div>
+      {!selectedDevice && (
+        <div className='device-selector-menu-btn-container'>
+          <button type='button' className='device-selector-menu-btn'>
+            <FontAwesomeIcon
+              icon={faEllipsisH}
+              className='device-selector-menu-btn-icon'
+            />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

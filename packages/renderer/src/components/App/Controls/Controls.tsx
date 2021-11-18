@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DeviceSelector from './DeviceSelector/DeviceSelector';
 import LocationEntry from './LocationEntry/LocationEntry';
 import { LatLngLiteral } from 'leaflet';
+import { Device } from '../../../interfaces/Device';
 
 import './Controls.css';
 
@@ -11,7 +12,7 @@ interface ControlsProps {
 }
 
 const Controls = ({ location, setLocation }: ControlsProps) => {
-  const [selectedDevice, setSelectedDevice] = useState<string>('');
+  const [selectedDevice, setSelectedDevice] = useState<Device | null>(null);
 
   return (
     <div id='app-controls-overlay'>
@@ -22,7 +23,7 @@ const Controls = ({ location, setLocation }: ControlsProps) => {
       <LocationEntry
         location={location}
         setLocation={setLocation}
-        disabled={selectedDevice === ''}
+        disabled={!selectedDevice}
       />
     </div>
   );

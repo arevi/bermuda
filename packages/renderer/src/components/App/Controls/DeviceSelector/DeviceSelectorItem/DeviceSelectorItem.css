@@ -1,6 +1,6 @@
 @layer components {
   .device-selector-item-icon-container {
-    @apply h-8 w-8 bg-white rounded-full flex items-center justify-center mr-2 flex-shrink-0;
+    @apply h-8 w-8 bg-white rounded-full flex items-center justify-center mr-3 flex-shrink-0;
   }
   .device-selector-item {
     @apply h-14 flex w-full items-center p-1.5 border-b;
@@ -10,7 +10,6 @@
   .device-selector-item.selected-device,
   .device-selector-item:hover {
     @apply cursor-pointer;
-    background-color: #242424;
   }
 
   .device-selector-item-details-container {
@@ -23,5 +22,18 @@
 
   .item-details-info {
     @apply text-white text-xs;
+  }
+
+  .device-selector-menu-btn-container {
+    @apply h-5 w-10 flex items-center justify-center text-sm;
+    color: #424242;
+  }
+
+  .device-selector-menu-btn-container:hover {
+    color: #3e3e3e;
+  }
+
+  .device-selector-menu-btn {
+    @apply h-full w-full;
   }
 }

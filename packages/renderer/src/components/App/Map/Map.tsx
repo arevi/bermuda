@@ -26,12 +26,13 @@ const Map = ({ location, setLocation }: MapProps) => {
     () => ({
       dragend() {
         const marker = markerRef.current;
-        if (marker != null) {
-          setLocation({
-            lat: marker.getLatLng().lat.toFixed(4),
-            lng: marker.getLatLng().lng.toFixed(4),
-          });
-        }
+        if (marker === null) return;
+
+        // Update location to 5 decimal places to ensure accuracy within ~1m
+        setLocation({
+          lat: marker.getLatLng().lat.toFixed(5),
+          lng: marker.getLatLng().lng.toFixed(5),
+        });
       },
     }),
     [setLocation]

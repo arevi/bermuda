@@ -4,6 +4,9 @@ import {
   getConnectedDeviceInfo,
 } from '../utils/deviceScanning';
 import { DeviceMessageHandler } from './DeviceMessageHandler';
+import { dialog } from 'electron';
+import { mountDiskImage } from '../utils/imageMount';
+import { StatusMessageType } from '../interfaces/DeviceMessage';
 
 export class DeviceManager {
   devices: Device[];
@@ -59,5 +62,68 @@ export class DeviceManager {
     }
 
     this.getDeviceMessageHandler().sendConnectedDevices(this.devices);
+  };
+
+  mountDiskImage = async (udid: string) => {
+    const selectedDeviceSearch = this.devices.filter(
+      (device) => device.udid === udid
+    );
+
+    if (selectedDeviceSearch.length === 0) return;
+    try {
+      const diskImagePath = await dialog.showOpenDialog({
+        properties: ['openFile'],
+        filters: [{ name: 'Disk Image', extensions: ['dmg'] }],
+      });
+
+      const diskImageSignaturePath = await dialog.showOpenDialog({
+        properties: ['openFile'],
+        filters: [
+          { name: 'Disk Image Signature', extensions: ['dmg.signature'] },
+        ],
+      });
+
+      if (
+        diskImagePath.filePaths.length === 0 ||
+        diskImageSignaturePath.filePaths.length === 0
+      )
+        return;
+
+      await mountDiskImage(
+        udid,
+        diskImagePath.filePaths[0],
+        diskImageSignaturePath.filePaths[0],
+        './assets/win-x64/ideviceimagemounter.exe'
+      );
+
+      this.devices = [
+        ...this.devices.filter((device) => device.udid !== udid),
+        {
+          ...selectedDeviceSearch[0],
+          diskImage: {
+            path: diskImagePath.filePaths[0],
+            signaturePath: diskImageSignaturePath.filePaths[0],
+          },
+          status: { developer: true },
+        },
+      ];
+
+      this.getDeviceMessageHandler().sendConnectedDevices(this.devices);
+
+      this.getDeviceMessageHandler().sendStatusMessage(
+        StatusMessageType.Success,
+        'Developer Mode Enabled'
+      );
+    } catch (err: any) {
+      this.getDeviceMessageHandler().sendStatusMessage(
+        StatusMessageType.Error,
+        err
+      );
+    }
+  };
+
+  setLocation = async (udid: string, location: string) => {
+    console.log(udid);
+    console.log(location);
   };
 }

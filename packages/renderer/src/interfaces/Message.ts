@@ -5,3 +5,8 @@ export interface DeviceMessage {
 export enum DeviceMessageType {
   GetDevices = 'GetDevices',
 }
+
+export interface StatusMessage {
+  type: 'Success' | 'Error';
+  message: string;
+}

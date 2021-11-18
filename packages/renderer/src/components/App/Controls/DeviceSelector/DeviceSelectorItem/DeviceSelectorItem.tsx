@@ -1,6 +1,7 @@
+import React from 'react';
 import { faEllipsisH, faMobile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import { Menu } from '@headlessui/react';
 import { Device } from '../../../../../interfaces/Device';
 
 import './DeviceSelectorItem.css';
@@ -24,6 +25,13 @@ const DeviceSelectorItem = ({
     if (setSelectedDevice && device.udid !== selectedDevice?.udid) {
       setSelectedDevice(targetDevice);
     }
+  };
+
+  const handleMountClick = (targetDevice: Device) => {
+    window.api.send('device', {
+      type: 'MountImage',
+      payload: { udid: targetDevice.udid },
+    });
   };
 
   return (
@@ -52,12 +60,22 @@ const DeviceSelectorItem = ({
       </div>
       {!selectedDevice && (
         <div className='device-selector-menu-btn-container'>
-          <button type='button' className='device-selector-menu-btn'>
-            <FontAwesomeIcon
-              icon={faEllipsisH}
-              className='device-selector-menu-btn-icon'
-            />
-          </button>
+          <Menu>
+            <Menu.Button>
+              <FontAwesomeIcon
+                icon={faEllipsisH}
+                className='device-selector-menu-btn-icon'
+              />
+            </Menu.Button>
+            <Menu.Items>
+              <Menu.Item
+                disabled={device.status.developer}
+                onClick={() => handleMountClick(device)}
+              >
+                <span>Mount Disk Image</span>
+              </Menu.Item>
+            </Menu.Items>
+          </Menu>
         </div>
       )}
     </div>

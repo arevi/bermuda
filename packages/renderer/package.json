@@ -64,10 +64,12 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@headlessui/react": "^1.4.2",
+    "@szhsin/react-menu": "^2.3.0",
     "leaflet": "^1.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.19.5",
+    "react-hot-toast": "^2.1.1",
     "react-leaflet": "^3.2.2"
   }
 }

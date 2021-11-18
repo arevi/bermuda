@@ -23,7 +23,7 @@ const Controls = ({ location, setLocation }: ControlsProps) => {
       <LocationEntry
         location={location}
         setLocation={setLocation}
-        disabled={!selectedDevice}
+        disabled={!selectedDevice || !selectedDevice.status.developer}
       />
     </div>
   );

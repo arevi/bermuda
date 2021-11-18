@@ -2,6 +2,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import 'leaflet/dist/leaflet.css';
+@import '@szhsin/react-menu/dist/index.css';
 
 body,
 #app-root {

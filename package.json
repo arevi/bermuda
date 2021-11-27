@@ -1,7 +1,7 @@
 {
   "name": "bermuda",
   "version": "0.0.1",
-  "description": "iOS Location Spoofer allows the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.",
+  "description": "Bermuda allows the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.",
   "main": "index.js",
   "scripts": {
     "start": "concurrently \"cd ./packages/main && npm run build-main-dev\" \"cd ./packages/renderer && npm run start-renderer-dev\" \"wait-on ./dist/dev/main.js && wait-on tcp:3000 && cd ./packages/main && npm run start-main-dev\"",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arevi/iLocation-Spoofer.git"
+    "url": "git+https://github.com/arevi/bermuda.git"
   },
   "author": "Armin Dizdarevic",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/arevi/iLocation-Spoofer/issues"
+    "url": "https://github.com/arevi/bermuda/issues"
   },
-  "homepage": "https://github.com/arevi/iLocation-Spoofer#readme",
+  "homepage": "https://github.com/arevi/bermuda#readme",
   "devDependencies": {
     "concurrently": "^6.4.0",
     "lerna": "^4.0.0",

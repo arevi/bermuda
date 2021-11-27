@@ -11,7 +11,7 @@ const Titlebar = () => {
   return (
     <div id='app-titlebar'>
       <div id='app-titlebar-drag-region'>
-        <h1 id='app-titlebar-title'>Working Title</h1>
+        <h1 id='app-titlebar-title'>Bermuda</h1>
       </div>
       <div id='app-titlebar-controls'>
         <FontAwesomeIcon

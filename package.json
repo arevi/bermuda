@@ -1,5 +1,5 @@
 {
-  "name": "ilocation-spoofer",
+  "name": "bermuda",
   "version": "0.0.1",
   "description": "iOS Location Spoofer allows the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.",
   "main": "index.js",
@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/arevi/iLocation-Spoofer#readme",
   "devDependencies": {
-    "concurrently": "^6.3.0",
+    "concurrently": "^6.4.0",
     "lerna": "^4.0.0",
     "wait-on": "^6.0.0"
   }

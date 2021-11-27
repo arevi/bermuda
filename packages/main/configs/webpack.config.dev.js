@@ -1,8 +1,7 @@
-import path from 'path';
-import { Configuration } from 'webpack';
-import CopyPlugin from 'copy-webpack-plugin';
+const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
-const config: Configuration = {
+const config = {
   entry: {
     main: path.join(__dirname, '../src/main.ts'),
     preload: path.join(__dirname, '../preload/preload.ts'),
@@ -33,4 +32,4 @@ const config: Configuration = {
   ],
 };
 
-export default config;
+module.exports = config;

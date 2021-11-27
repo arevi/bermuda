@@ -1,10 +1,7 @@
-import path from 'path';
-import HtmlWebPackPlugin from 'html-webpack-plugin';
-import CopyPlugin from 'copy-webpack-plugin';
-import { Configuration } from 'webpack';
-import {} from 'webpack-dev-server';
+const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
-const config: Configuration = {
+const config = {
   entry: path.join(__dirname, '../src/index.tsx'),
   name: 'react',
   target: ['web', 'electron-renderer'],
@@ -50,4 +47,4 @@ const config: Configuration = {
   ],
 };
 
-export default config;
+module.exports = config;

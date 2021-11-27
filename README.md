@@ -1,5 +1,9 @@
 # Bermuda - iOS GPS Location Spoofing
 
+<p align="center">
+  <img alt="Bermuda App Screenshot" src="https://i.imgur.com/8N8bgvD.png" />
+</p>
+
 ### General/FAQ
 
 #### What is Bermuda?

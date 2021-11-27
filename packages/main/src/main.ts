@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import { DeviceMessage } from './interfaces/DeviceMessage';
 import { Configuration } from './classes/Configuration';
 import { createAppWindow } from './views/app';
+import { WindowMessage, WindowMessageType } from './interfaces/WindowMessage';
 
 let configuration: Configuration;
 let appWindow: BrowserWindow;
@@ -29,9 +30,23 @@ app.whenReady().then(() => {
 
 /**
  * Handles all device messages that are sent from the renderer
- * Validates the window is currently "alive"
  * All message payloads & the target window are passed to the device message handler
  */
 ipcMain.on('device', (_, message: DeviceMessage) => {
   configuration.deviceMessageHandler.handleMessage(message);
+});
+
+/**
+ * Handles all window messages that are sent from the renderer
+ * Currently handles minimize/close events for the main app window
+ */
+ipcMain.on('window', (_, message: WindowMessage) => {
+  switch (message.type) {
+    case WindowMessageType.Close:
+      appWindow.close();
+      break;
+    case WindowMessageType.Minimize:
+      appWindow.minimize();
+      break;
+  }
 });

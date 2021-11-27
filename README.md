@@ -6,7 +6,7 @@
 
 Bermuda is a simple desktop application designed to modify the GPS coordinates of an iOS device (iPhone, iPad, iPod) without requiring any jailbreak/system modifications.
 
-### Why is it called Bermuda?
+#### Why is it called Bermuda?
 
 The Bermuda Triangle, also known as the Devil's Triangle, is a loosely defined region in the western part of the North Atlantic Ocean where a number of aircraft and ships are said to have disappeared under mysterious circumstances. (This application helps your GPS location disappear!)
 

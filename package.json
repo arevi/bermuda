@@ -4,7 +4,7 @@
   "description": "Bermuda allows the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd ./packages/main && npm run build-dev\" \"cd ./packages/renderer && npm run start-dev\" \"wait-on ./dist/dev/main.js && wait-on tcp:3000 && cd ./packages/main && npm run start-dev\"",
+    "start": "concurrently \"cd ./packages/main && npm run build-dev\" \"cd ./packages/renderer && npm run start\" \"wait-on ./dist/dev/main.js && wait-on tcp:3000 && cd ./packages/main && npm run start\"",
     "build": "concurrently \"cd ./packages/main && npm run build\" \"cd ./packages/renderer && npm run build\"",
     "postinstall": "lerna bootstrap"
   },

@@ -46,7 +46,7 @@ const DeviceSelector = ({
    * @param curDevices - Current device array
    * @param panelOpen - Panel open state
    * @param curSelectedDevice - Current selected device UDID
-   * @returns DeviceSelectorItem|DeviceSelectorItem[]
+   * @returns JSX.Element<DeviceSelectorItem|div> | JSX.Element[]<DeviceSelectorItem[]>
    */
   const renderDevices = (
     curDevices: Device[],
@@ -75,10 +75,8 @@ const DeviceSelector = ({
       (device) => device.udid === curSelectedDevice?.udid
     );
 
-    // If for some odd reason, the device disappears, return nothing
+    // This is awkward, no selected device was found
     if (deviceSearch.length === 0 || !selectedDevice) {
-      renderedDevices = [];
-
       return (
         <div id='device-msg-container'>
           <span id='devices-msg'>No device selected</span>

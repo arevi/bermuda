@@ -15,13 +15,41 @@
   "main": "index.js",
   "scripts": {
     "start-renderer-dev": "webpack-dev-server --port 3000 --config ./src/renderer/configs/webpack.config.dev.js",
-    "start-app-dev": "cd ./dist/dev && cross-env ELECTRON_ENV=dev electron main.js",
+    "start-app-dev": "cd ./build/dev && cross-env ELECTRON_ENV=dev electron main.js",
     "build-app-dev": "webpack --watch --config ./src/main/configs/webpack.config.dev.js",
     "build-app-prod": "webpack --config ./src/main/configs/webpack.config.prod.js",
     "build-renderer-prod": "webpack --config ./src/renderer/configs/webpack.config.prod.js",
     "build": "concurrently \"npm run build-app-prod\" \"npm run build-renderer-prod\"",
-    "build:win": "cd ./packages/main && npm run build:win",
-    "start": "concurrently \"npm run build-app-dev\" \"npm run start-renderer-dev\" \"wait-on ./dist/dev/main.js && wait-on tcp:3000 && npm run start-app-dev\""
+    "build:win": "electron-builder build --win -c.extraMetadata.main=./main.js --publish never",
+    "start": "concurrently \"npm run build-app-dev\" \"npm run start-renderer-dev\" \"wait-on ./build/dev/main.js && wait-on tcp:3000 && npm run start-app-dev\""
+  },
+  "build": {
+    "productName": "Bermuda",
+    "appId": "com.arevi.bermuda",
+    "files": [
+      {
+        "from": "./build/prod",
+        "to": "./"
+      },
+      {
+        "from": "./build/prod/app",
+        "to": "./app/"
+      },
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "icon": "./src/main/assets/icon.png"
+    },
+    "extraResources": [
+      {
+        "from": "./src/main/assets",
+        "to": "assets"
+      }
+    ],
+    "directories": {
+      "output": "dist"
+    }
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",

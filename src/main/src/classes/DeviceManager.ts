@@ -7,7 +7,7 @@ import { DeviceMessageHandler } from './DeviceMessageHandler';
 import { dialog } from 'electron';
 import { mountDiskImage } from '../utils/imageMount';
 import { StatusMessageType } from '../interfaces/DeviceMessage';
-import path from 'path';
+import { getExecutablePath } from '../utils/helper';
 
 export class DeviceManager {
   devices: Device[];
@@ -32,7 +32,7 @@ export class DeviceManager {
     try {
       // Scan all connected devices and retrieve device UDIDs
       const latestDeviceIds = await getConnectedDeviceIds(
-        path.join(__dirname, './assets/win-x64/idevice_id.exe')
+        getExecutablePath('idevice_id')
       );
 
       // Remove any devices which have been disconnected
@@ -55,7 +55,7 @@ export class DeviceManager {
         await Promise.all(
           unknownDevices.map(async (unknownDeviceId) => {
             let device: Device = await getConnectedDeviceInfo(
-              path.join(__dirname, './assets/win-x64/ideviceinfo.exe'),
+              getExecutablePath('ideviceinfo'),
               unknownDeviceId
             );
 
@@ -121,7 +121,7 @@ export class DeviceManager {
         udid,
         diskImagePath.filePaths[0],
         diskImageSignaturePath.filePaths[0],
-        path.join(__dirname, './assets/win-x64/ideviceimagemounter.exe')
+        getExecutablePath('ideviceimagemounter')
       );
 
       // If the above is successful, will update the connected device list to mark the device as being in developer mode

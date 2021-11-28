@@ -49,7 +49,7 @@ const config = {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
   output: {
-    path: path.join(__dirname, '../../../dist/prod/app'),
+    path: path.join(__dirname, '../../../build/prod/app'),
     filename: './js/[name].[chunkhash].js',
   },
   plugins: [

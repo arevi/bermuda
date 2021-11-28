@@ -1,6 +1,8 @@
 import { DeviceCategory } from '../interfaces/Device';
 
 import deviceDictionary from '../utils/deviceDictionary.json';
+import { isDev } from './isDev';
+import path from 'path';
 
 /**
  * Converts device categories into an enum representing the device category (iPhone, iPad, iPhone)
@@ -45,4 +47,26 @@ export const convertProductTypeToFriendlyName = (
   // Return an unknown device type w/ the category if a device is found not in the dictionary
   // This handles situations where a new device is released, but the dictionary has not been updated yet to support it
   return `Unknown ${category.toString()}`;
+};
+
+/**
+ * Converts a executable name into the platform specific executable path
+ * @param executable - Executable name (string)
+ * @returns - Path to executable (string)
+ */
+export const getExecutablePath = (executable: string) => {
+  if (process.platform !== 'darwin') {
+    if (isDev) {
+      return path.join(__dirname, './assets/win-x64/', `${executable}.exe`);
+    } else {
+      return path.join(
+        process.resourcesPath,
+        './assets/win-x64/',
+        `${executable}.exe`
+      );
+    }
+  } else {
+    // TODO: MacOS
+    return '';
+  }
 };

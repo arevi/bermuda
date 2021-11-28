@@ -22,7 +22,7 @@ const config = {
     extensions: ['*', '.js', '.ts', '.json'],
   },
   output: {
-    path: path.join(__dirname, '../../../dist/dev'),
+    path: path.join(__dirname, '../../../build/dev'),
     filename: '[name].js',
   },
   plugins: [
@@ -30,7 +30,7 @@ const config = {
       patterns: [
         {
           from: path.join(__dirname, '../assets'),
-          to: path.join(__dirname, '../../../dist/dev/assets'),
+          to: path.join(__dirname, '../../../build/dev/assets'),
         },
       ],
     }),

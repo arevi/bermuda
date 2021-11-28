@@ -76,3 +76,8 @@ Bermuda **DOES NOT** distribute, and/or provide, iOS developer disk images. Howe
 ### Precautions
 
 - Bermuda is provided, as-is, without any express warranty on either the software or your personal devices. Please use appropriate caution with your device.
+
+### Attribution
+
+- Libimobiledevice binaries are provided, and developed by, the libimobiledevice team. Please visit: https://libimobiledevice.org/ for more information.
+- Darkmatter map is provided as an example using the public maps CDN by https://carto.com/. (This is not a commercial product and is not intended to be. This is an example of how to display a map using Carto's awesome CDN)

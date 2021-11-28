@@ -7,6 +7,7 @@ import { DeviceMessageHandler } from './DeviceMessageHandler';
 import { dialog } from 'electron';
 import { mountDiskImage } from '../utils/imageMount';
 import { StatusMessageType } from '../interfaces/DeviceMessage';
+import path from 'path';
 
 export class DeviceManager {
   devices: Device[];
@@ -26,7 +27,7 @@ export class DeviceManager {
     try {
       // Scan all connected devices and retrieve device UDIDs
       const latestDeviceIds = await getConnectedDeviceIds(
-        './assets/win-x64/idevice_id.exe'
+        path.join(__dirname, './assets/win-x64/idevice_id.exe')
       );
 
       // Remove any devices which have been disconnected
@@ -49,7 +50,7 @@ export class DeviceManager {
         await Promise.all(
           unknownDevices.map(async (unknownDeviceId) => {
             let device: Device = await getConnectedDeviceInfo(
-              './assets/win-x64/ideviceinfo.exe',
+              path.join(__dirname, './assets/win-x64/ideviceinfo.exe'),
               unknownDeviceId
             );
 
@@ -93,7 +94,7 @@ export class DeviceManager {
         udid,
         diskImagePath.filePaths[0],
         diskImageSignaturePath.filePaths[0],
-        './assets/win-x64/ideviceimagemounter.exe'
+        path.join(__dirname, './assets/win-x64/ideviceimagemounter.exe')
       );
 
       this.devices = [

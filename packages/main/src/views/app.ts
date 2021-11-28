@@ -21,7 +21,7 @@ export const createAppWindow = () => {
   if (isDev) {
     window.loadURL('http://localhost:3000/');
   } else {
-    window.loadFile('./build/index.html');
+    window.loadFile('./app/index.html');
   }
 
   // Detect if devtools was somehow opened outside development

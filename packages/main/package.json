@@ -4,8 +4,9 @@
   "description": "Bermuda allows the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.",
   "main": "./src/main.ts",
   "scripts": {
-    "build-main-dev": "webpack --watch --config ./configs/webpack.config.dev.js",
-    "start-main-dev": "cd ../../dist/dev && cross-env ELECTRON_ENV=dev electron main.js"
+    "build-dev": "webpack --watch --config ./configs/webpack.config.dev.js",
+    "start": "cd ../../dist/dev && cross-env ELECTRON_ENV=dev electron main.js",
+    "build": "webpack --config ./configs/webpack.config.prod.js"
   },
   "repository": {
     "type": "git",

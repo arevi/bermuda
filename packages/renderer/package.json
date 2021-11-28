@@ -4,7 +4,8 @@
   "description": "Bermuda allows the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.",
   "main": "./src/index.tsx",
   "scripts": {
-    "start-renderer-dev": "webpack-dev-server --port 3000 --config ./configs/webpack.config.dev.js"
+    "start-dev": "webpack-dev-server --port 3000 --config ./configs/webpack.config.dev.js",
+    "build": "webpack --config ./configs/webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -46,7 +47,9 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.5",
     "postcss-loader": "^6.2.1",
     "prettier": "^2.5.0",
     "style-loader": "^3.3.1",

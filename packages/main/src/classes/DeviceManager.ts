@@ -77,6 +77,13 @@ export class DeviceManager {
         filters: [{ name: 'Disk Image', extensions: ['dmg'] }],
       });
 
+      if (diskImagePath.filePaths.length === 0) {
+        return this.getDeviceMessageHandler().sendStatusMessage(
+          StatusMessageType.Error,
+          'No developer disk image selected'
+        );
+      }
+
       const diskImageSignaturePath = await dialog.showOpenDialog({
         properties: ['openFile'],
         filters: [
@@ -84,11 +91,12 @@ export class DeviceManager {
         ],
       });
 
-      if (
-        diskImagePath.filePaths.length === 0 ||
-        diskImageSignaturePath.filePaths.length === 0
-      )
-        return;
+      if (diskImageSignaturePath.filePaths.length === 0) {
+        return this.getDeviceMessageHandler().sendStatusMessage(
+          StatusMessageType.Error,
+          'No developer disk image signature selected'
+        );
+      }
 
       await mountDiskImage(
         udid,

@@ -27,7 +27,12 @@ const config = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: '../main/assets', to: 'assets' }],
+      patterns: [
+        {
+          from: path.join(__dirname, '../assets'),
+          to: path.join(__dirname, '../../../dist/dev/assets'),
+        },
+      ],
     }),
   ],
 };

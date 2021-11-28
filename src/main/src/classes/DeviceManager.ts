@@ -20,10 +20,15 @@ export class DeviceManager {
   }
 
   start = () => {
+    // Scan devices on an interval of 10 seconds
     setInterval(this.scanDevices, 10000);
   };
 
-  scanDevices = async () => {
+  /**
+   * Scans for available connected iOS devices
+   * If devices are found, will send the device list via the message handler
+   */
+  scanDevices = async (): Promise<void> => {
     try {
       // Scan all connected devices and retrieve device UDIDs
       const latestDeviceIds = await getConnectedDeviceIds(
@@ -65,18 +70,29 @@ export class DeviceManager {
     this.getDeviceMessageHandler().sendConnectedDevices(this.devices);
   };
 
-  mountDiskImage = async (udid: string) => {
+  /**
+   * Opens prompts for user to select a disk image and disk image signature
+   * If a valid disk image and signature is provided, the selected device will have the disk image mounted
+   * On success and/or failure, a prompt will be sent via the message handler to inform user of mount status
+   * @param udid - Device UDID string
+   */
+  mountDiskImage = async (udid: string): Promise<void> => {
+    // Filter through connected devices to see if UDID provided is a valid connected device
     const selectedDeviceSearch = this.devices.filter(
       (device) => device.udid === udid
     );
 
+    // If the UDID does not map to a known connected device, abort.
     if (selectedDeviceSearch.length === 0) return;
+
     try {
+      // Opens dialog to seleect a .dmg file (XCode Developer Disk image)
       const diskImagePath = await dialog.showOpenDialog({
         properties: ['openFile'],
         filters: [{ name: 'Disk Image', extensions: ['dmg'] }],
       });
 
+      // If no disk image is provided, abort and send a status message via message handler
       if (diskImagePath.filePaths.length === 0) {
         return this.getDeviceMessageHandler().sendStatusMessage(
           StatusMessageType.Error,
@@ -84,6 +100,7 @@ export class DeviceManager {
         );
       }
 
+      // Opens dialog to select a .dmg.signature file (XCode Developer Disk Image Signature)
       const diskImageSignaturePath = await dialog.showOpenDialog({
         properties: ['openFile'],
         filters: [
@@ -91,6 +108,7 @@ export class DeviceManager {
         ],
       });
 
+      // If no disk image signature is provided, abort and send status message via message handler
       if (diskImageSignaturePath.filePaths.length === 0) {
         return this.getDeviceMessageHandler().sendStatusMessage(
           StatusMessageType.Error,
@@ -98,6 +116,7 @@ export class DeviceManager {
         );
       }
 
+      // Attempts to mount the developer disk image & signature provided to the selected iOS device
       await mountDiskImage(
         udid,
         diskImagePath.filePaths[0],
@@ -105,6 +124,7 @@ export class DeviceManager {
         path.join(__dirname, './assets/win-x64/ideviceimagemounter.exe')
       );
 
+      // If the above is successful, will update the connected device list to mark the device as being in developer mode
       this.devices = [
         ...this.devices.filter((device) => device.udid !== udid),
         {
@@ -117,13 +137,16 @@ export class DeviceManager {
         },
       ];
 
+      // Sends the updated device list via message handler
       this.getDeviceMessageHandler().sendConnectedDevices(this.devices);
 
+      // Sends a status message via message handler to user, notifying them of successful developer mode mount
       this.getDeviceMessageHandler().sendStatusMessage(
         StatusMessageType.Success,
         'Developer Mode Enabled'
       );
     } catch (err: any) {
+      // Catch any error and send error message to user via message handler
       this.getDeviceMessageHandler().sendStatusMessage(
         StatusMessageType.Error,
         err

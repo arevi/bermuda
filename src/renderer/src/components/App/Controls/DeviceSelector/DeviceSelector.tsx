@@ -53,12 +53,10 @@ const DeviceSelector = ({
     panelOpen: boolean,
     curSelectedDevice: Device | null
   ) => {
-    let renderedDevices: JSX.Element[] = [];
-
     // If the panel is open build JSX[] of DeviceSelectorItems and return
     // Note: There is a conditional prop that is spread of selectedDevice, if a device is selected (neat right?)
     if (panelOpen) {
-      renderedDevices = curDevices.map((device) => (
+      const renderedDevices: JSX.Element[] = curDevices.map((device) => (
         <DeviceSelectorItem
           device={device}
           key={device.udid}

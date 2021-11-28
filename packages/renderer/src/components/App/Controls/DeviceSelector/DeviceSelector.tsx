@@ -22,6 +22,9 @@ const DeviceSelector = ({
   const devices = useDevices();
   const [open, setOpen] = useState<boolean>(false);
 
+  console.log(selectedDevice);
+  console.log(devices);
+
   // Validate that the currently selected device is still a valid device anytime the devices and/or selectedDevice changes
   useEffect(() => {
     // Identify all device UDIDs that are currently valid
@@ -48,17 +51,18 @@ const DeviceSelector = ({
   const renderDevices = (
     curDevices: Device[],
     panelOpen: boolean,
-    curSelectedDevice: Device
+    curSelectedDevice: Device | null
   ) => {
     let renderedDevices: JSX.Element[] = [];
 
     // If the panel is open build JSX[] of DeviceSelectorItems and return
-    if (panelOpen && selectedDevice) {
+    // Note: There is a conditional prop that is spread of selectedDevice, if a device is selected (neat right?)
+    if (panelOpen) {
       renderedDevices = curDevices.map((device) => (
         <DeviceSelectorItem
           device={device}
           key={device.udid}
-          selectedDevice={selectedDevice}
+          {...(selectedDevice ? { selectedDevice: selectedDevice } : {})}
           setSelectedDevice={setSelectedDevice}
         />
       ));
@@ -68,14 +72,18 @@ const DeviceSelector = ({
 
     // Panel not open, filter for only selected device
     let deviceSearch = curDevices.filter(
-      (device) => device.udid === curSelectedDevice.udid
+      (device) => device.udid === curSelectedDevice?.udid
     );
 
     // If for some odd reason, the device disappears, return nothing
     if (deviceSearch.length === 0 || !selectedDevice) {
       renderedDevices = [];
 
-      return renderedDevices;
+      return (
+        <div id='device-msg-container'>
+          <span id='devices-msg'>No device selected</span>
+        </div>
+      );
     }
 
     return (
@@ -99,9 +107,7 @@ const DeviceSelector = ({
           <span id='devices-msg'>No devices detected</span>
         </div>
       )}
-      {devices.length !== 0 &&
-        selectedDevice &&
-        renderDevices(devices, open, selectedDevice)}
+      {devices.length !== 0 && renderDevices(devices, open, selectedDevice)}
     </div>
   );
 };

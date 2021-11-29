@@ -29,6 +29,10 @@ const DeviceSelectorItem = ({
     }
   };
 
+  /**
+   * Sends device event to start mount process for device id
+   * @param targetDevice - Device object
+   */
   const handleMountClick = (targetDevice: Device) => {
     window.api.send('device', {
       type: 'MountImage',

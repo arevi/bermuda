@@ -22,9 +22,6 @@ const DeviceSelector = ({
   const devices = useDevices();
   const [open, setOpen] = useState<boolean>(false);
 
-  console.log(selectedDevice);
-  console.log(devices);
-
   // Validate that the currently selected device is still a valid device anytime the devices and/or selectedDevice changes
   useEffect(() => {
     // Identify all device UDIDs that are currently valid

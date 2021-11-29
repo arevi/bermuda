@@ -15,6 +15,7 @@ const Map = ({ location, setLocation }: MapProps) => {
   // TODO: Identify the proper ref type for marker
   const markerRef = useRef<any>();
 
+  // TODO: Why is this necessary for react-leaflet for custom markers
   const icon = divIcon({
     className: 'map-marker-icon',
     html: renderToString(

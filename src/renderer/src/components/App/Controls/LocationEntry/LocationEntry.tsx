@@ -24,6 +24,9 @@ const LocationEntry = ({
     formState: { errors },
   } = useForm();
 
+  /**
+   * Listen for updates ot location and set value appropriately
+   */
   useEffect(() => {
     setValue('coordinates', `${location.lat},${location.lng}`);
   }, [location, setValue]);

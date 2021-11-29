@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { renderToString } from 'react-dom/server';
 import { divIcon, LatLngLiteral } from 'leaflet';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
@@ -14,6 +14,12 @@ interface MapProps {
 const Map = ({ location, setLocation }: MapProps) => {
   // TODO: Identify the proper ref type for marker
   const markerRef = useRef<any>();
+
+  // Refer to: https://www.google.com/search?q=react-leaflet+not+displaying+tiles+until+resize
+  // Should have just used OpenLayers
+  useEffect(() => {
+    window.dispatchEvent(new Event('resize'));
+  }, []);
 
   // TODO: Why is this necessary for react-leaflet for custom markers
   const icon = divIcon({

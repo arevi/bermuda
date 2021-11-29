@@ -14,6 +14,20 @@ interface ControlsProps {
 const Controls = ({ location, setLocation }: ControlsProps) => {
   const [selectedDevice, setSelectedDevice] = useState<Device | null>(null);
 
+  const handleCoordinateUpdate = (newCoordinates: string) => {
+    window.api.send('device', {
+      type: 'SetLocation',
+      payload: { udid: selectedDevice?.udid, location: newCoordinates },
+    });
+
+    const coords = newCoordinates.split(',');
+
+    setLocation({
+      lat: parseFloat(coords[0]),
+      lng: parseFloat(coords[1]),
+    });
+  };
+
   return (
     <div id='app-controls-overlay'>
       <DeviceSelector
@@ -22,7 +36,7 @@ const Controls = ({ location, setLocation }: ControlsProps) => {
       />
       <LocationEntry
         location={location}
-        setLocation={setLocation}
+        handleCoordinateUpdate={handleCoordinateUpdate}
         disabled={!selectedDevice || !selectedDevice.status.developer}
       />
     </div>

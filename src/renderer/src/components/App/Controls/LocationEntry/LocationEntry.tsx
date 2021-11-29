@@ -9,13 +9,13 @@ import './LocationEntry.css';
 interface LocationEntryProps {
   disabled: boolean;
   location: LatLngLiteral;
-  setLocation: (arg: LatLngLiteral) => void;
+  handleCoordinateUpdate: (newCoordinates: string) => void;
 }
 
 const LocationEntry = ({
   disabled,
   location,
-  setLocation,
+  handleCoordinateUpdate,
 }: LocationEntryProps) => {
   const {
     register,
@@ -23,8 +23,6 @@ const LocationEntry = ({
     setValue,
     formState: { errors },
   } = useForm();
-
-  const handleCoordinateUpdate = () => {};
 
   useEffect(() => {
     setValue('coordinates', `${location.lat},${location.lng}`);
@@ -34,7 +32,9 @@ const LocationEntry = ({
     <div id='location-entry-container'>
       <form
         id='location-entry-form'
-        onSubmit={handleSubmit(handleCoordinateUpdate)}
+        onSubmit={handleSubmit((data) =>
+          handleCoordinateUpdate(data.coordinates)
+        )}
       >
         <input
           type='text'

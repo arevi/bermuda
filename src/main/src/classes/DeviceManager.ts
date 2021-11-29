@@ -8,6 +8,7 @@ import { dialog } from 'electron';
 import { mountDiskImage } from '../utils/imageMount';
 import { StatusMessageType } from '../interfaces/DeviceMessage';
 import { getExecutablePath } from '../utils/helper';
+import { updateLocation } from '../utils/locationUpdate';
 
 export class DeviceManager {
   devices: Device[];
@@ -154,8 +155,39 @@ export class DeviceManager {
     }
   };
 
+  /**
+   * Attempts to update the provided devices location to the passed coordinates
+   * @param udid - Device UDID (String)
+   * @param location - Geolocation (string)
+   */
   setLocation = async (udid: string, location: string) => {
-    console.log(udid);
-    console.log(location);
+    // Filter through connected devices to see if UDID provided is a valid connected device
+    const selectedDeviceSearch = this.devices.filter(
+      (device) => device.udid === udid
+    );
+
+    // If the UDID does not map to a known connected device, abort.
+    if (selectedDeviceSearch.length === 0) return;
+
+    try {
+      // Attempt to update the provided devices location with the provided location coordinates
+      await updateLocation(
+        udid,
+        location,
+        getExecutablePath('idevicesetlocation')
+      );
+
+      // Sends a status message via message handler to user, notifying them of successful location update
+      this.getDeviceMessageHandler().sendStatusMessage(
+        StatusMessageType.Success,
+        'Location updated'
+      );
+    } catch (err: any) {
+      // Send a generic failed to update location message
+      this.getDeviceMessageHandler().sendStatusMessage(
+        StatusMessageType.Error,
+        'Failed to update location'
+      );
+    }
   };
 }

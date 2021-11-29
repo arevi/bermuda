@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDevices } from '../../../../hooks/useDevices';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -13,14 +13,17 @@ import './DeviceSelector.css';
 interface DeviceSelectorProps {
   selectedDevice: Device | null;
   setSelectedDevice: (device: Device | null) => void;
+  panelOpen: boolean;
+  setPanelOpen: (arg: boolean) => void;
 }
 
 const DeviceSelector = ({
   selectedDevice,
   setSelectedDevice,
+  panelOpen,
+  setPanelOpen,
 }: DeviceSelectorProps) => {
   const devices = useDevices();
-  const [open, setOpen] = useState<boolean>(false);
 
   // Validate that the currently selected device is still a valid device anytime the devices and/or selectedDevice changes
   useEffect(() => {
@@ -54,7 +57,6 @@ const DeviceSelector = ({
    */
   const renderDevices = (
     curDevices: Device[],
-    panelOpen: boolean,
     curSelectedDevice: Device | null
   ) => {
     // If the panel is open build JSX[] of DeviceSelectorItems and return
@@ -97,14 +99,16 @@ const DeviceSelector = ({
   };
 
   return (
-    <div id='device-panel' className={`${open ? 'open' : 'closed'}`}>
+    <div id='device-panel' className={`${panelOpen ? 'open' : 'closed'}`}>
       <div id='device-panel-header'>
         <button
           id='device-panel-toggle-btn'
           title='Expand Panel'
-          onClick={() => setOpen(!open)}
+          onClick={() => setPanelOpen(!panelOpen)}
         >
-          <FontAwesomeIcon icon={open ? faAngleDoubleDown : faAngleDoubleUp} />
+          <FontAwesomeIcon
+            icon={panelOpen ? faAngleDoubleDown : faAngleDoubleUp}
+          />
         </button>
       </div>
       {devices.length === 0 && (
@@ -112,7 +116,7 @@ const DeviceSelector = ({
           <span id='devices-msg'>No devices detected</span>
         </div>
       )}
-      {devices.length !== 0 && renderDevices(devices, open, selectedDevice)}
+      {devices.length !== 0 && renderDevices(devices, selectedDevice)}
     </div>
   );
 };

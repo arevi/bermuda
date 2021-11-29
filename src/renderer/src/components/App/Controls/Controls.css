@@ -1,7 +1,10 @@
 @layer components {
-  #app-controls-overlay {
-    @apply absolute bottom-4 flex flex-col justify-end ml-4;
-    height: calc(100vh - 3.75rem);
+  .app-controls-overlay {
+    @apply absolute bottom-4 flex flex-col justify-end ml-4 h-36 transition-all;
     z-index: 401;
+  }
+
+  .app-controls-overlay.overlay-open {
+    height: calc(100vh - 3.75rem);
   }
 }

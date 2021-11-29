@@ -13,6 +13,7 @@ interface ControlsProps {
 
 const Controls = ({ location, setLocation }: ControlsProps) => {
   const [selectedDevice, setSelectedDevice] = useState<Device | null>(null);
+  const [panelOpen, setPanelOpen] = useState<boolean>(false);
 
   /**
    * Sends window event to update selected devices location and updates the location to be rendered on map
@@ -36,10 +37,12 @@ const Controls = ({ location, setLocation }: ControlsProps) => {
   };
 
   return (
-    <div id='app-controls-overlay'>
+    <div className={`app-controls-overlay ${panelOpen ? 'overlay-open' : ''}`}>
       <DeviceSelector
         selectedDevice={selectedDevice}
         setSelectedDevice={setSelectedDevice}
+        panelOpen={panelOpen}
+        setPanelOpen={setPanelOpen}
       />
       <LocationEntry
         location={location}

@@ -36,4 +36,26 @@
   .device-selector-menu-btn {
     @apply h-full w-full;
   }
+
+  .device-selector-menu-btn:hover {
+    @apply text-white;
+  }
+
+  .device-selector-menu {
+    @apply relative;
+  }
+
+  .device-selector-menu-items-dropdown-container {
+    @apply absolute top-4 w-48 rounded border shadow;
+    background-color: #121212;
+    border-color: #242424;
+  }
+
+  .device-select-menu-dropdown-item {
+    @apply text-xs text-white text-center w-full px-2 py-1;
+  }
+
+  .device-select-menu-dropdown-item:hover {
+    background-color: #242424;
+  }
 }

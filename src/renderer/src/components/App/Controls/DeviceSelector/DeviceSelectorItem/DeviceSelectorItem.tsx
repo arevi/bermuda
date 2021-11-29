@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { faEllipsisH, faMobile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Menu } from '@headlessui/react';
+import { Menu, Transition } from '@headlessui/react';
 import { Device } from '../../../../../interfaces/Device';
 
 import './DeviceSelectorItem.css';
@@ -60,21 +60,34 @@ const DeviceSelectorItem = ({
       </div>
       {!selectedDevice && (
         <div className='device-selector-menu-btn-container'>
-          <Menu>
-            <Menu.Button>
-              <FontAwesomeIcon
-                icon={faEllipsisH}
-                className='device-selector-menu-btn-icon'
-              />
-            </Menu.Button>
-            <Menu.Items>
-              <Menu.Item
-                disabled={device.status.developer}
-                onClick={() => handleMountClick(device)}
-              >
-                <span>Mount Disk Image</span>
-              </Menu.Item>
-            </Menu.Items>
+          <Menu as='div' className='device-selector-menu'>
+            <div>
+              <Menu.Button className='device-selector-menu-btn'>
+                <FontAwesomeIcon icon={faEllipsisH} />
+              </Menu.Button>
+            </div>
+            <Transition
+              as={Fragment}
+              enter='transition ease-out duration-100'
+              enterFrom='transform opacity-0 scale-95'
+              enterTo='transform opacity-100 scale-100'
+              leave='transition ease-in duration-75'
+              leaveFrom='transform opacity-100 scale-100'
+              leaveTo='transform opacity-0 scale-95'
+            >
+              <Menu.Items className='device-selector-menu-items-dropdown-container'>
+                <div>
+                  <Menu.Item>
+                    <button
+                      className='device-select-menu-dropdown-item'
+                      onClick={() => handleMountClick(device)}
+                    >
+                      Mount Developer Disk Image
+                    </button>
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
           </Menu>
         </div>
       )}

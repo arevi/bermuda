@@ -35,6 +35,13 @@ const DeviceSelector = ({
       setSelectedDevice(null);
     }
 
+    // If there is a currently selected device, update it's state
+    if (selectedDevice) {
+      setSelectedDevice(
+        devices.filter((device) => device.udid === selectedDevice.udid)[0]
+      );
+    }
+
     // Default the selected device to the first device if only 1 device is connected
     if (!selectedDevice && devices.length === 1) {
       setSelectedDevice(devices[0]);
@@ -62,6 +69,7 @@ const DeviceSelector = ({
           key={device.udid}
           {...(selectedDevice ? { selectedDevice: selectedDevice } : {})}
           setSelectedDevice={setSelectedDevice}
+          renderMenu={false}
         />
       ));
 
@@ -83,7 +91,11 @@ const DeviceSelector = ({
     }
 
     return (
-      <DeviceSelectorItem device={deviceSearch[0]} key={deviceSearch[0].udid} />
+      <DeviceSelectorItem
+        device={deviceSearch[0]}
+        key={deviceSearch[0].udid}
+        renderMenu={true}
+      />
     );
   };
 

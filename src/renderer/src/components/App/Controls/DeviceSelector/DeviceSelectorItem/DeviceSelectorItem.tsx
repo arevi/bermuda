@@ -10,12 +10,14 @@ interface DeviceSelectorItemProps {
   device: Device;
   selectedDevice?: Device;
   setSelectedDevice?: (device: Device) => void;
+  renderMenu: boolean;
 }
 
 const DeviceSelectorItem = ({
   device,
   selectedDevice,
   setSelectedDevice,
+  renderMenu,
 }: DeviceSelectorItemProps) => {
   /**
    * Verify the item is in a selectable state and is not the current selected device, then update the selected device
@@ -58,8 +60,8 @@ const DeviceSelectorItem = ({
           </span>
         </div>
       </div>
-      {!selectedDevice && (
-        <div className='device-selector-menu-btn-container'>
+      <div className='device-selector-menu-btn-container'>
+        {renderMenu && (
           <Menu as='div' className='device-selector-menu'>
             <div>
               <Menu.Button className='device-selector-menu-btn'>
@@ -89,8 +91,8 @@ const DeviceSelectorItem = ({
               </Menu.Items>
             </Transition>
           </Menu>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

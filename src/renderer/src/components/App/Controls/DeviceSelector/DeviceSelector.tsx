@@ -49,6 +49,15 @@ const DeviceSelector = ({
   }, [devices, selectedDevice, setSelectedDevice]);
 
   /**
+   * Set device and close panel at the same time
+   * @param device - Device Object
+   */
+  const handleDeviceClick = (device: Device) => {
+    setSelectedDevice(device);
+    setPanelOpen(false);
+  };
+
+  /**
    * Generate JSX for a list of devices, or a single device, depending on panel open condition
    * @param curDevices - Current device array
    * @param panelOpen - Panel open state
@@ -67,7 +76,7 @@ const DeviceSelector = ({
           device={device}
           key={device.udid}
           {...(selectedDevice ? { selectedDevice: selectedDevice } : {})}
-          setSelectedDevice={setSelectedDevice}
+          setSelectedDevice={handleDeviceClick}
           renderMenu={false}
         />
       ));

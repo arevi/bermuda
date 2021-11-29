@@ -7,6 +7,12 @@
     border-color: #242424;
   }
 
+  .app-controls-overlay.overlay-open
+    > #device-panel
+    > .device-selector-item:hover {
+    background-color: #242424;
+  }
+
   .device-selector-item.selected-device,
   .device-selector-item:hover {
     @apply cursor-pointer;

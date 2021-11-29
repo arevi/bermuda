@@ -28,6 +28,10 @@
     color: #3e3e3e;
   }
 
+  #device-panel-toggle-btn:hover {
+    @apply text-white;
+  }
+
   #device-msg-container {
     @apply h-full w-full flex justify-center items-center pb-6;
   }

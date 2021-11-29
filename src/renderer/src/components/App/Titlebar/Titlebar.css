@@ -15,8 +15,9 @@
     color: #4e4e4e;
   }
 
-  #app-titlebar > #app-titlebar-controls > .app-titlebar-controls-icon:hover {
-    @apply cursor-pointer;
-    color: #3e3e3e;
+  #app-titlebar
+    > #app-titlebar-controls
+    > .app-titlebar-controls-icon-btn:hover {
+    @apply cursor-pointer text-white;
   }
 }

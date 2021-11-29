@@ -25,18 +25,20 @@ const Titlebar = () => {
         <h1 id='app-titlebar-title'>Bermuda</h1>
       </div>
       <div id='app-titlebar-controls'>
-        <button title='Minimize' onClick={minimizeWindow}>
-          <FontAwesomeIcon
-            icon={faMinusCircle}
-            className='app-titlebar-controls-icon'
-          />
+        <button
+          title='Minimize'
+          onClick={minimizeWindow}
+          className='app-titlebar-controls-icon-btn'
+        >
+          <FontAwesomeIcon icon={faMinusCircle} />
         </button>
 
-        <button title='Close' onClick={closeWindow}>
-          <FontAwesomeIcon
-            icon={faTimesCircle}
-            className='app-titlebar-controls-icon'
-          />
+        <button
+          title='Close'
+          onClick={closeWindow}
+          className='app-titlebar-controls-icon-btn'
+        >
+          <FontAwesomeIcon icon={faTimesCircle} />
         </button>
       </div>
     </div>

@@ -1,6 +1,6 @@
 {
   "name": "bermuda",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Bermuda allows the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.",
   "homepage": "https://github.com/arevi/bermuda#readme",
   "bugs": {

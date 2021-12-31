@@ -20,7 +20,7 @@
     "build-app-prod": "webpack --config ./src/main/configs/webpack.config.prod.js",
     "build-renderer-prod": "webpack --config ./src/renderer/configs/webpack.config.prod.js",
     "build": "concurrently \"npm run build-app-prod\" \"npm run build-renderer-prod\"",
-    "build:win": "electron-builder build --wins -c.extraMetadata.main=./main.js --publish never",
+    "build:win": "electron-builder build --win --x64 --arm64 -c.extraMetadata.main=./main.js --publish never",
     "build:mac": "electron-builder build --mac --x64 --arm64 -c.extraMetadata.main=./main.js --publish never",
     "start": "concurrently \"npm run build-app-dev\" \"npm run start-renderer-dev\" \"wait-on ./build/dev/main.js && wait-on tcp:3000 && npm run start-app-dev\""
   },

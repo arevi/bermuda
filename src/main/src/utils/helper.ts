@@ -66,7 +66,16 @@ export const getExecutablePath = (executable: string) => {
       );
     }
   } else {
-    // TODO: MacOS
-    return '';
+    if (process.arch === 'arm64') {
+      return path.join(
+        '/opt/homebrew/Cellar/libimobiledevice/1.3.0/bin',
+        executable
+      );
+    } else {
+      return path.join(
+        '/usr/local/Cellar/libimobiledevice/1.3.0/bin',
+        executable
+      );
+    }
   }
 };

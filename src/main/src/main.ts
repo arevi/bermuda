@@ -18,7 +18,9 @@ app.whenReady().then(() => {
   appWindow = createAppWindow();
   // MacOS
   app.on('activate', () => {
-    appWindow = createAppWindow();
+    if (!appWindow) {
+      appWindow = createAppWindow();
+    }
   });
 
   // Setup configuration by passing a function to retrieve app window

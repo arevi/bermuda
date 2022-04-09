@@ -25,12 +25,12 @@ Bermuda is made for anyone, and everyone, including:
 #### What do I need to use Bermuda?
 
 - An iOS device (obviously)
-- A personal computer running either Windows or MacOS
+- A personal computer running either Windows, MacOS or Linux
 - A USB to lightning cable to connect your iPhone/iPad/iPod to your computer
 - **Windows Users**: iTunes must be installed [(Click here to download)](https://support.apple.com/downloads/itunes)
 - **MacOS Users**: Homebrew must be installed `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 - **MacOS Users**: Libimobile device library installed through Brew required `brew install libimobiledevice`
-
+- **Linux Users** `usbmuxd` or `libimobile` binaries must be installed. Check your package manager for these packages. Binaries must be installed at `/usr/bin/`
 ---
 
 ### Getting Started

@@ -1,6 +1,6 @@
 {
   "name": "bermuda",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Bermuda allows the GPS coordinates of iOS devices to be modified, empowering users to protect their location privacy.",
   "homepage": "https://github.com/arevi/bermuda#readme",
   "bugs": {
@@ -22,6 +22,7 @@
     "build": "concurrently \"npm run build-app-prod\" \"npm run build-renderer-prod\"",
     "build:win": "electron-builder build --win --x64 -c.extraMetadata.main=./main.js --publish never",
     "build:mac": "electron-builder build --mac --x64 --arm64 -c.extraMetadata.main=./main.js --publish never",
+    "build:linux": "electron-builder build --linux --x64 -c.extraMetadata.main=./main.js --publish never",
     "start": "concurrently \"npm run build-app-dev\" \"npm run start-renderer-dev\" \"wait-on ./build/dev/main.js && wait-on tcp:3000 && npm run start-app-dev\""
   },
   "build": {
@@ -44,6 +45,9 @@
     },
     "mac": {
       "target": "dmg",
+      "icon": "./src/main/assets/icon.png"
+    },
+    "linux": {
       "icon": "./src/main/assets/icon.png"
     },
     "extraResources": [
@@ -89,7 +93,6 @@
     "copy-webpack-plugin": "^10.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
-    "dmg-license": "^1.0.10",
     "electron": "^16.0.6",
     "electron-builder": "^22.14.5",
     "eslint": "^8.3.0",
@@ -116,5 +119,8 @@
     "webpack": "^5.64.4",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0"
+  },
+  "optionalDependencies": {
+    "dmg-license": "^1.0.10"
   }
 }

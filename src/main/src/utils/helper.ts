@@ -55,27 +55,33 @@ export const convertProductTypeToFriendlyName = (
  * @returns - Path to executable (string)
  */
 export const getExecutablePath = (executable: string) => {
-  if (process.platform !== 'darwin') {
-    if (isDev) {
-      return path.join(__dirname, './assets/win-x64/', `${executable}.exe`);
-    } else {
-      return path.join(
-        process.resourcesPath,
-        './assets/win-x64/',
-        `${executable}.exe`
-      );
+  switch (process.platform) {
+    case 'darwin': {
+      if (process.arch === 'arm64') {
+        return path.join(
+          '/opt/homebrew/Cellar/libimobiledevice/1.3.0/bin',
+          executable
+        );
+      } else {
+        return path.join(
+          '/usr/local/Cellar/libimobiledevice/1.3.0/bin',
+          executable
+        );
+      }
     }
-  } else {
-    if (process.arch === 'arm64') {
-      return path.join(
-        '/opt/homebrew/Cellar/libimobiledevice/1.3.0/bin',
-        executable
-      );
-    } else {
-      return path.join(
-        '/usr/local/Cellar/libimobiledevice/1.3.0/bin',
-        executable
-      );
+    case 'linux': {
+      return path.join('/usr/bin', executable);
+    }
+    default: {
+      if (isDev) {
+        return path.join(__dirname, './assets/win-x64/', `${executable}.exe`);
+      } else {
+        return path.join(
+          process.resourcesPath,
+          './assets/win-x64/',
+          `${executable}.exe`
+        );
+      }
     }
   }
 };

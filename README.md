@@ -30,6 +30,7 @@ Bermuda is made for anyone, and everyone, including:
 - **Windows Users**: iTunes must be installed [(Click here to download)](https://support.apple.com/downloads/itunes)
 - **MacOS Users**: Homebrew must be installed `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 - **MacOS Users**: Libimobile device library installed through Brew required `brew install libimobiledevice`
+- **MacOS Users**: The application must be whitelisted to run after installing via the command: `sudo xattr -r -d com.apple.quarantine "/Applications/Bermuda.app"`
 - **Linux Users** `usbmuxd` or `libimobile` binaries must be installed. Check your package manager for these packages. Binaries must be installed at `/usr/bin/`
 
 #### IMPORTANT: Breaking iOS 16 Changes

@@ -31,6 +31,11 @@ Bermuda is made for anyone, and everyone, including:
 - **MacOS Users**: Homebrew must be installed `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 - **MacOS Users**: Libimobile device library installed through Brew required `brew install libimobiledevice`
 - **Linux Users** `usbmuxd` or `libimobile` binaries must be installed. Check your package manager for these packages. Binaries must be installed at `/usr/bin/`
+
+#### IMPORTANT: Breaking iOS 16 Changes
+- Beginning with iOS 16 Apple has introduced a new developer mode for iOS. There is currently not an official way to enable developer mode on a Windows and/or Linux machine. You must have a MacOS device & XCode to enable developer mode. This application will *NOT* work with developer mode disabled. For steps on how to enable developer mode [(Click here)](https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device).
+
+
 ---
 
 ### Getting Started
